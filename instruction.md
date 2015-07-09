@@ -9,8 +9,7 @@
 /*
 sublime-imfix.c
 Use LD_PRELOAD to interpose some function to fix sublime input method support for linux.
-By Cjacker Huang <jianzhong.huang at i-soft.com.cn>
- 
+
 gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC
 LD_PRELOAD=./libsublime-imfix.so sublime_text
 */
@@ -86,7 +85,6 @@ void gtk_im_context_set_client_window (GtkIMContext *context,
   gdk_window_add_filter (window, event_filter, context); 
 }
 </code> </pre>
----------------------------code end-----------------------------
 
 ## second, run the below command to make a .so file:
     gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC
