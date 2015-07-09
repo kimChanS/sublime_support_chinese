@@ -1,10 +1,12 @@
-# Instruction
+# Instructions
 
-## before u config, u should install some lib first:
-    sudo apt-get install build-essential
-    sudo apt-get install libgtk2.0-dev
+### Installation:
+```sh
+$ sudo apt-get install build-essential
+$ sudo apt-get install libgtk2.0-dev
+```
 
-##first, copy the below to a file named sublime_imfix.c:
+### first, copy the below to a file named sublime_imfix.c:
 <pre><code>
 /*
 sublime-imfix.c
@@ -86,20 +88,25 @@ void gtk_im_context_set_client_window (GtkIMContext *context,
 }
 </code> </pre>
 
-## second, run the below command to make a .so file:
-    gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC
+### second, run the below command to make a .so file:
+```sh
+$ gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC
+```
 
-## third, test(run the below to activate a sublime program, and test whether u can input chinese directly):
-    LD_PRELOAD=./libsublime-imfix.so sublime_text
+### third, test(run the below to activate a sublime program, and test whether u can input chinese directly):
+```sh
+$ LD_PRELOAD=./libsublime-imfix.so sublime_text
+```
 
-## forth, if third step is successful, config the desktop config:
-    cd /usr/share/applications
-    sudo vim sublime-text-2.desktop
-
+### forth, if third step is successful, config the desktop config:
+```sh
+$ cd /usr/share/applications
+$ sudo vim sublime-text-2.desktop
+```
     replace "Exec=/opt/sublime_text/sublime_text %F" to "Exec=bash -c 'LD_PRELOAD=/home/chenhj/test/sublime/libsublime-imfix.so /opt/sublime_text/sublime_text' %F"
 
     replace "Exec=/opt/sublime_text/sublime_text -n" to "Exec=bash -c 'LD_PRELOAD=/home/chenhj/test/sublime/libsublime-imfix.so /opt/sublime_text/sublime_text' -n"
 
     replace "Exec=/opt/sublime_text/sublime_text --command new_file" to "Exec=bash -c 'LD_PRELOAD=/home/chenhj/test/sublime/libsublime-imfix.so /opt/sublime_text/sublime_text' --command new_file"
 
-## now, U can test to open sublime text program and input chinese!
+#### now, U can test to open sublime text program and input chinese!
