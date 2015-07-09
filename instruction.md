@@ -5,7 +5,7 @@
     sudo apt-get install libgtk2.0-dev
 
 ##first, copy the below to a file named sublime_imfix.c:
-------------------------code begin------------------------------------
+<p>
 /*
 sublime-imfix.c
 Use LD_PRELOAD to interpose some function to fix sublime input method support for linux.
@@ -85,6 +85,7 @@ void gtk_im_context_set_client_window (GtkIMContext *context,
   }
   gdk_window_add_filter (window, event_filter, context); 
 }
+</p>
 ---------------------------code end-----------------------------
 
 ## second, run the below command to make a .so file:
